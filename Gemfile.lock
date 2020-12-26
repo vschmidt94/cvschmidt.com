@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/vschmidt94/jekyll-theme-yat.git
-  revision: 1b2d59fd189ebc552f66fb1d920cb24e0ac26d62
+  revision: d22a457692dde772911859ace5cc436898c62704
   specs:
     jekyll-theme-yat (1.6.4)
       jekyll (> 3.5, < 5.0)
@@ -91,6 +91,7 @@ GEM
     unicode-display_width (1.7.0)
 
 PLATFORMS
+  ruby
   x86_64-linux
 
 DEPENDENCIES

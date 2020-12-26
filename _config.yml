@@ -18,7 +18,7 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: Vaughan Schmidt
+title: code.mechanics
 email: vaughan.schmidt@gmail.com
 author: Vaughan Schmidt
 copyright: Copyright © 2020
@@ -35,8 +35,9 @@ github_username: vschmidt94
 # defaults
 defaults:
     home:
-        heading: "code.mechanics"
-        subheading: "The nuts and bolts of software development."
+        heading: "Vaughan Schmidt"
+        subheading: "Software Development Engineer"
+        location: "Sacramento, CA"
         banner: "header.jpg"
 
 # Build settings
