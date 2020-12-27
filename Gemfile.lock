@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/vschmidt94/jekyll-theme-yat.git
-  revision: b837096cc5a2b2f88ce99e76e0ce03b2bc061bce
+  revision: da3597aa61fa8dac379a11b388095a9ff3e60801
   specs:
     jekyll-theme-yat (1.6.4)
       jekyll (> 3.5, < 5.0)

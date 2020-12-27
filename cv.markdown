@@ -16,7 +16,7 @@ linkedin: [https://linkedin.com/vaughanschmidt](https://linkedin.com/vaughanschm
 
 --------------------------
 
-### Experience
+<h3><i class="fas fa-briefcase"></i>&nbsp;Experience</h3>
 
 _Software Development Engineer_
 <span style="float:right">2019.August - Present</span><br />
@@ -30,7 +30,7 @@ Focused on the Remote Interactive Lab (RIL) modules. RIL enables engineers anywh
 hardware platforms located in Intel labs around the world to debug, test, and develop for graphics driver projects.
 This includes both legacy platforms and new platform development.<br />
 <br />
-Technology stack: Python, TypeScript, Flask, Angular, Bash
+Technology stack: Python, TypeScript, Flask, Angular, Bash, SQL
 </div>  
    
 _Aviation Software Engineer_
@@ -40,14 +40,12 @@ _Garmin AT, Salem OR_
 <div style="padding-left:20px; padding-bottom:14px">
 As part of the aviation maps processing library team, responsible for implementing new features in the graphical
 maps library. This includes the navigation maps and feature layers as displayed on most of Garmin's air-nav
-products.<br />
+products. Software compliance with applicable coding standards including DO-178B.<br />
 <br />
-Software compliance with applicable coding standards including DO-178B.
-<br />
-Technology stack: C, C++, Python, OpenGL, Boost Build, embedded database
+Technology stack: C, C++, Python, OpenGL, Boost Build, embedded database<br />
 <br />
 Served on the Salem Internal Audit team to help ensure site-wide compliance with SAE AS9100 standards. Served as
-interim site lead during successful compliance audit conducted 2019.
+interim site lead during successful recertification audit conducted 2019.
 </div>
 
 _Project Manager_
@@ -58,7 +56,7 @@ _Mechanical Systems Engineer_
 <span style="float:right">1994 - 2008</span><br />
 Fluor Daniel, Inc., Greenville SC
 
-### Education
+<h3><i class="fas fa-graduation-cap"></i>&nbsp;Education</h3>
 
 Master of Science: Business Administration
 <span style="float:right">2016</span><br />
@@ -74,7 +72,7 @@ Bachelor of Science: Mechanical Engineering
 Clemson Univeristy, Clemson, SC
 
 
-### Certifications
+<h3><i class="fas fa-certificate"></i>&nbsp;Certifications</h3>
 
 Project Management Professional (PMP)
 <span style="float:right">2010 - Present</span><br />
