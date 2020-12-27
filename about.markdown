@@ -11,7 +11,7 @@ Where is here?
 
 This site is my personal blog. Probably unfit for consumption, but don't let that stop you.
 
-### About me
+## About me
 
 I am a software development engineer working for Intel in Folsom, CA. Feel free to check out my C.V. and social profiles
 for more details.
@@ -36,7 +36,7 @@ google it and see where it leads.
 ## What is code.mechanics ?
 
 I'm not a big fan of job titles. I've graduated with a degrees in mechanical engineering and computer science, and
-have held various positions: `mechanical systems engineer`, `software engineer`, `developer`, `SDE`, etc.
+have held various positions: _mechanical systems engineer_, _software engineer_, _developer_, _SDE_, etc.
 
 But, what really like doing boils down to:
 * Using tools

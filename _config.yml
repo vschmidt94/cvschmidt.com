@@ -46,6 +46,7 @@ plugins:
   - jekyll-feed
 
 header_pages:
+    - cv.markdown
     - about.markdown
 
 # Exclude from processing.
