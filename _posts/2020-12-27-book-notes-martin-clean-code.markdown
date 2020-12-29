@@ -34,3 +34,14 @@ produce in the end is a Cliff Notes-ish post that will be useful for me to circl
 
 ### 2. Meaningful Names
 
+No suprises here, agree with everything, a couple of highlighted notes:
+* Clarity is king
+* Don't be afraid to rename if you come up with something better
+* Don't add gratuitous context
+
+This is something every team I've been on has been about the same stage of acceptance: The benefit of longer / more
+descriptive names for everything across the board outweighs the cost of the longer name. Still, if you can be concise
+and short - that's even better. Just don't be short named and vague.
+
+### 3. Functions
+
