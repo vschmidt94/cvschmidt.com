@@ -45,3 +45,35 @@ and short - that's even better. Just don't be short named and vague.
 
 ### 3. Functions
 
+* Keep them small!
+* Functions should do one thing, do it well, and do it only
+  * "If a function does only those steps that are one level below the stated name of hte function, then the function is
+  doing one thing"
+* Code should read like a top-down narrative
+* By their nature, switch statements do N things
+* Use descriptive names for functions
+  * "A long descriptive name is better than a long descriptive comment"
+* Ideal number of arguments is 0, followed by 1, then 2.
+  * Boy, do I have a lot to work on here.
+  * more arguments = more testing / harder testing
+  * A boolean argument is really, really bad
+    * Means the function does 2 things
+    * IMO, maybe not that bad... essentially lets you choose a strategy - but I get his point.
+* Functions should not have side effects
+  * "Side effects are lies"
+* Function should do something or answer something - not both
+* Exceptions > Returning error codes
+  * Lets you separate error handling from happy path
+  * Error handling qualifies as "one thing" - so have error handling functions
+* DRY
+* Structured Programming - the old single entry / single exit:
+    * If functions are small, so what if you return early
+    * Personally, I like early bail outs when justified, it cuts the mental clutter of what the possible cases are by
+      tying off loose ends early.
+* It is not natural to write code like this:
+    * Start with getting the logic down, then:
+        * refactor! refactor! - try different things
+
+### Comments
+
+
