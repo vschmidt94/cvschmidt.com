@@ -47,7 +47,7 @@ and short - that's even better. Just don't be short named and vague.
 
 * Keep them small!
 * Functions should do one thing, do it well, and do it only
-  * "If a function does only those steps that are one level below the stated name of hte function, then the function is
+  * "If a function does only those steps that are one level below the stated name of the function, then the function is
   doing one thing"
 * Code should read like a top-down narrative
 * By their nature, switch statements do N things
@@ -76,4 +76,30 @@ and short - that's even better. Just don't be short named and vague.
 
 ### Comments
 
+* "Don't comment bad code - rewrite it" - Kernigham & Plaugher
+* "The proper use of comments is to compensate for our failure to express ourself in code." - Uncle Bob
+* Comments lie
+* Become maintainabilty issue - code evolves, comments don't 
+* Code is the source of truth
+* Spend effort to minimize comments
+* Acceptable as Explanation of intent, warning of consequences
+
+The chapter goes into a lot more details and specific examples that are worthwhile to review, but the above
+bullets capture the essence.
+
+### Formatting
+
+* Formatting is important
+* ... is about communcation
+* Vertical density implies close associations
+* Declare variables as close to their useage as possible
+* Instance variables should be declared at top of class
+* Dependent functions should be vertically close
+* Functions with high conceptual affinity should be close
+* Vertical ordering -> call dependencies should point downward
+* Horizontal formatting - 80 chars is arbitrily short, but don't go too long either
+* Indentation helps visualize structure, and also too deeply nested code
+* Follow team rules, use static analysis
+
+### Objects and Data Structures
 
