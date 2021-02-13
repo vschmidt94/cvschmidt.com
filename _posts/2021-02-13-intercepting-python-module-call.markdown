@@ -22,6 +22,3 @@ Here's a simple gist with example:
 <script src="https://gist.github.com/vschmidt94/a0863048ea5f3c9d9400298b3f826082.js"></script>
 
 Note in that gist, the original instance value has been completely replaced, but would be easy enough to save off and restore.
-
-
-
