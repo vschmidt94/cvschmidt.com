@@ -23,11 +23,12 @@ _Software Development Engineer_
 _Intel Corp., Folsom CA_
 
 <div style="padding-left:20px; padding-bottom:14px">
-Graphics Testing Automation & Execution (GTA-X) core developer team. Contribute new features and improvements to
-Intel's GTA-X products used to enable access and test automation for the development of Intel's graphics driver. <br />
+Graphics Testing Automation & Execution (GTA-X) core developer team within the Intel Architecture, Graphics, and
+Software (IAGS) group . Contribute new features and improvements to Intel's GTA-X products used to enable access
+and test automation for the development of Intel's graphics driver. <br />
 <br />
 Focused on the Remote Interactive Lab (RIL) modules. RIL enables engineers anywhere in the world to connect with
-hardware platforms located in Intel labs around the world to debug, test, and develop for graphics driver projects.
+hardware platforms located in Intel labs worldwide to debug, test, and develop for graphics driver projects.
 This includes both legacy platforms and new platform development.<br />
 <br />
 Technology stack: Python, TypeScript, Flask, Angular, Bash, SQL
@@ -52,9 +53,7 @@ _Project Manager_
 <span style="float:right">1998 - 2015</span><br />
 The Schmidt Group, Inc., Greenville SC
 
-_Mechanical Systems Engineer_
-<span style="float:right">1994 - 2008</span><br />
-Fluor Daniel, Inc., Greenville SC
+Focus on IT-related projects including ERP systems.
 
 <h3><i class="fas fa-graduation-cap"></i>&nbsp;Education</h3>
 
@@ -69,7 +68,7 @@ Oregon State University, Corvallis, OR
   
 Bachelor of Science: Mechanical Engineering
 <span style="float:right">1994</span><br />
-Clemson Univeristy, Clemson, SC
+Clemson University, Clemson, SC
 
 
 <h3><i class="fas fa-certificate"></i>&nbsp;Certifications</h3>
