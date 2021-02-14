@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Intercepting python module __call__"
+title:  "Intercepting python module __call__()"
 date:   2021-2-10 12:27:14 -0800
 categories: python
 ---
