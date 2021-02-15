@@ -1,7 +1,7 @@
 
 ---
 layout: post
-title:  "NZXT H1 Recall pain"
+title:  "NZXT H1 Recall hits home"
 date:   2021-2-15 9:00:00 -0800
 categories: hardware
 ---
