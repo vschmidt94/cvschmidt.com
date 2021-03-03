@@ -17,7 +17,8 @@ other metrics from elsewhere in the process.
 
 # The solution
 
-It is easier to show than explain...
+It is easier to show than explain... 
+The gist is located [here](https://gist.github.com/vschmidt94/91518e3c40e0f1284401297049439376)
 
 <script src="https://gist.github.com/vschmidt94/91518e3c40e0f1284401297049439376.js"></script>
 
