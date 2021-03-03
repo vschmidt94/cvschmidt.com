@@ -1,0 +1,139 @@
+<p>I want to take another pass through Uncle Bob’s (a.k.a. Robert Martin) book, <em>Clean Code</em>.</p>
+
+<p>A lot of my work lately has been trending towards overhaul &amp; refactoring legacy modules that have been modified, patched, and
+Frakenstein’d for years. This typically starts with a new feature request, which seems simple enough on the surface -
+but once I get into the modules in question, some of the accrued technical debt means it’s not as simple as it could be.</p>
+
+<p>I want to avoid giving the wrong impression though: I think our particular code base is in fairly average condition
+given its age, size, complexity, and number of contributors. It’s just time to bring some of the <em>Boy Scout Rule</em>
+he mentions right in Chapter 1: <strong>Leave the campground better than you found it.</strong></p>
+
+<h2 id="book-notes--book-review">Book Notes != Book Review</h2>
+
+<p>To be clear, the purpose of this post is a place to collect my own notes as I read through the book. Uncle Bob is going
+to explain some things that reasonate with me strongly, and probably there will be things I disagree with as well.</p>
+
+<p>My goal is 1 chapter a every day or two, and I’ll just continually update this post until I’m finished. What I hope to
+produce in the end is a Cliff Notes-ish post that will be useful for me to circle back to in the future.</p>
+
+<h2 id="chapters">Chapters</h2>
+<h3 id="1-clean-code">1. Clean Code</h3>
+
+<ul>
+  <li>LeBlanc’s law: <em>Later equals never</em>
+    <ul>
+      <li>I need to remember this one for Kanban review and planning meetings when we kick the can.</li>
+      <li>Corollary (or something): <em>Perfect is the enemy of done</em></li>
+    </ul>
+  </li>
+  <li>Various takes on the idea of Clean Code by big names in CS</li>
+  <li><em>Making code easier to read actually makes it easier to write</em></li>
+  <li>Boy Scout rule: <em>Leave the campground better than you found it.</em></li>
+</ul>
+
+<h3 id="2-meaningful-names">2. Meaningful Names</h3>
+
+<p>No suprises here, agree with everything, a couple of highlighted notes:</p>
+<ul>
+  <li>Clarity is king</li>
+  <li>Don’t be afraid to rename if you come up with something better</li>
+  <li>Don’t add gratuitous context</li>
+</ul>
+
+<p>This is something every team I’ve been on has been about the same stage of acceptance: The benefit of longer / more
+descriptive names for everything across the board outweighs the cost of the longer name. Still, if you can be concise
+and short - that’s even better. Just don’t be short named and vague.</p>
+
+<h3 id="3-functions">3. Functions</h3>
+
+<ul>
+  <li>Keep them small!</li>
+  <li>Functions should do one thing, do it well, and do it only
+    <ul>
+      <li>“If a function does only those steps that are one level below the stated name of the function, then the function is
+doing one thing”</li>
+    </ul>
+  </li>
+  <li>Code should read like a top-down narrative</li>
+  <li>By their nature, switch statements do N things</li>
+  <li>Use descriptive names for functions
+    <ul>
+      <li>“A long descriptive name is better than a long descriptive comment”</li>
+    </ul>
+  </li>
+  <li>Ideal number of arguments is 0, followed by 1, then 2.
+    <ul>
+      <li>Boy, do I have a lot to work on here.</li>
+      <li>more arguments = more testing / harder testing</li>
+      <li>A boolean argument is really, really bad
+        <ul>
+          <li>Means the function does 2 things</li>
+          <li>IMO, maybe not that bad… essentially lets you choose a strategy - but I get his point.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Functions should not have side effects
+    <ul>
+      <li>“Side effects are lies”</li>
+    </ul>
+  </li>
+  <li>Function should do something or answer something - not both</li>
+  <li>Exceptions &gt; Returning error codes
+    <ul>
+      <li>Lets you separate error handling from happy path</li>
+      <li>Error handling qualifies as “one thing” - so have error handling functions</li>
+    </ul>
+  </li>
+  <li>DRY</li>
+  <li>Structured Programming - the old single entry / single exit:
+    <ul>
+      <li>If functions are small, so what if you return early</li>
+      <li>Personally, I like early bail outs when justified, it cuts the mental clutter of what the possible cases are by
+tying off loose ends early.</li>
+    </ul>
+  </li>
+  <li>It is not natural to write code like this:
+    <ul>
+      <li>Start with getting the logic down, then:
+        <ul>
+          <li>refactor! refactor! - try different things</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="comments">Comments</h3>
+
+<ul>
+  <li>“Don’t comment bad code - rewrite it” - Kernigham &amp; Plaugher</li>
+  <li>“The proper use of comments is to compensate for our failure to express ourself in code.” - Uncle Bob</li>
+  <li>Comments lie</li>
+  <li>Become maintainabilty issue - code evolves, comments don’t</li>
+  <li>Code is the source of truth</li>
+  <li>Spend effort to minimize comments</li>
+  <li>Acceptable as Explanation of intent, warning of consequences</li>
+</ul>
+
+<p>The chapter goes into a lot more details and specific examples that are worthwhile to review, but the above
+bullets capture the essence.</p>
+
+<h3 id="formatting">Formatting</h3>
+
+<ul>
+  <li>Formatting is important</li>
+  <li>… is about communcation</li>
+  <li>Vertical density implies close associations</li>
+  <li>Declare variables as close to their useage as possible</li>
+  <li>Instance variables should be declared at top of class</li>
+  <li>Dependent functions should be vertically close</li>
+  <li>Functions with high conceptual affinity should be close</li>
+  <li>Vertical ordering -&gt; call dependencies should point downward</li>
+  <li>Horizontal formatting - 80 chars is arbitrily short, but don’t go too long either</li>
+  <li>Indentation helps visualize structure, and also too deeply nested code</li>
+  <li>Follow team rules, use static analysis</li>
+</ul>
+
+<h3 id="objects-and-data-structures">Objects and Data Structures</h3>
+
