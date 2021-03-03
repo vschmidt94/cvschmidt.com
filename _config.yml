@@ -21,14 +21,14 @@
 title: code.mechanics
 email: vaughan.schmidt@gmail.com
 author: Vaughan Schmidt
-copyright: Copyright © 2020
+copyright: Copyright © 2021
 description: >- # this means to ignore newlines until "baseurl:"
     Welcome to my personal blog... these are probably not the droids you are looking for,
     but welcome! This is a space I use to organize my thoughts, track projects and ideas,
     and discuss topics of interest. Usually (but not always) about software development
     topics.
-baseurl: "/cvschmidt_blog" # the subpath of your site, e.g. /blog
-url: "http://vschmidt94.github.io" # the base hostname & protocol for your site, e.g. http://example.com
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "https://cvschmidt.com" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: 
 github_username: vschmidt94
 
@@ -41,7 +41,7 @@ defaults:
         banner: "header.jpg"
 
 # Build settings
-theme: jekyll-theme-yat
+remote_theme: vschmidt94/jekyll-theme-yat
 plugins:
   - jekyll-feed
 
