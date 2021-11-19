@@ -2,7 +2,7 @@
 layout: post
 title:  "On Software Quality & Requirements"
 date:   2021-11-19 8:00:00 -0800
-categories: Software Quality
+categories: Software, Quality
 ---
 
 # Inspiration
