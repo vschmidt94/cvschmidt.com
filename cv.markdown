@@ -14,6 +14,8 @@ phone: 916.633.4511
 github: [https://github.com/vschmidt94](https://github.com/vschmidt94)  
 linkedin: [https://linkedin.com/vaughanschmidt](https://linkedin.com/vaughanschmidt)  
 
+<span><i class="fas fa-file-pdf-o"></i>&nbsp;<a href="cvschmidt.com/assets/pdf/vaughan_schmidt_resume.pdf" target="_blank">PDF C.V.</a></span>
+
 --------------------------
 
 <h3><i class="fas fa-briefcase"></i>&nbsp;Experience</h3>
