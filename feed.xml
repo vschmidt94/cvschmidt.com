@@ -1,0 +1,474 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://cvschmidt.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://cvschmidt.com/" rel="alternate" type="text/html" /><updated>2021-11-21T20:39:24+00:00</updated><id>https://cvschmidt.com/feed.xml</id><title type="html">code.mechanics</title><subtitle>Welcome to my personal blog... these are probably not the droids you are looking for, but welcome! This is a space I use to organize my thoughts, track projects and ideas, and discuss topics of interest. Usually (but not always) about software development topics.</subtitle><author><name>Vaughan Schmidt</name></author><entry><title type="html">On Software Quality &amp;amp; Requirements</title><link href="https://cvschmidt.com/software,/quality/2021/11/19/on-software-quality.html" rel="alternate" type="text/html" title="On Software Quality &amp;amp; Requirements" /><published>2021-11-19T16:00:00+00:00</published><updated>2021-11-19T16:00:00+00:00</updated><id>https://cvschmidt.com/software,/quality/2021/11/19/on-software-quality</id><content type="html" xml:base="https://cvschmidt.com/software,/quality/2021/11/19/on-software-quality.html">&lt;h1 id=&quot;inspiration&quot;&gt;Inspiration&lt;/h1&gt;
+
+&lt;p&gt;My team’s applications are the product of dozens - if not hundreds - of different engineers
+contributions going back to 2015. That is to say, we’re a fairly mature product being used
+by hundreds of other engineers every day. But, how do measure quality? We report all sorts of
+metrics upstream to management, but nowhere in there is a metric that measures the quality of
+our code. Oh, we do have some checks like cyclomatic complexity - and other checks by linters
+and tools to enforce conformance to best practices, etc.&lt;/p&gt;
+
+&lt;p&gt;What we do have is self-acknowledged tech debt, a backlog of Jira Issues, various TODOs 
+scattered around in the code base - and overflowing good intentions to address these just as 
+soon as the stars align to allow us to free up developer time to start tackling the backlog.&lt;/p&gt;
+
+&lt;p&gt;That is not to say me and my teammates don’t do our best to address issues when we find them
+in the course of working our tickets - but more that any improvement to code quality is more
+of a side-effect of writing new functionality into existing code, than the goal itself.&lt;/p&gt;
+
+&lt;h1 id=&quot;what-is-quality&quot;&gt;What is Quality?&lt;/h1&gt;
+
+&lt;p&gt;Paraphrasing the definition as found in both ISO 9000, PMBOK, and elsewhere:&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;…the degree in which a set of inherent characteristics of an object fulfills requirements.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;It’s important to distinguish quality from grade when used as a metric for fit-for-purpose.
+Quality is the degree in which a product fulfulls its promises and obligations, where Grade 
+is the category of the product.&lt;/p&gt;
+
+&lt;h1 id=&quot;requirements-the-missing-ingredient-of-software-quality&quot;&gt;Requirements: the missing ingredient of software quality&lt;/h1&gt;
+
+&lt;p&gt;As software engineers, we write code, unit tests, functional tests, integration tests all in the 
+spirit of producing high quality software. We will create Jira tickets that detail user stories
+and acceptance criteria.&lt;/p&gt;
+
+&lt;p&gt;But, where do we track and trace requirements? Some companies have compliance obligations and
+will employ formal requirement documentation and tracing. However, this is the exception rather
+than the rule. It adds a layer of complexity and expense - both in hard dollars and developer 
+time.&lt;/p&gt;
+
+&lt;p&gt;However, it’s right there in the definition of quality - how well does our software fulfill
+the &lt;em&gt;requirements&lt;/em&gt;? Sure, requirements don’t have to be recorded - but how well are we actual
+tracking / revisiting old requirements. Often our source of truth for requirements related to
+the current codebase is that senior engineer who was there the last time this module was changed
+and remembers something - vaguely - about the original request. So, we end up implementing
+what user A asked for without realizing the negative impact it will have on user B.&lt;/p&gt;
+
+&lt;h1 id=&quot;what-is-needed-opinionated&quot;&gt;What is needed (Opinionated)&lt;/h1&gt;
+
+&lt;p&gt;Requirements management tools exist, but most of us don’t bother using them. It’s too much
+book-keeping that is not seen as clear added value.&lt;/p&gt;
+
+&lt;p&gt;Ultimately, we have to convince ourselves, our peers, and our managers that there’s value to
+formal requirement tracking for any long-lived application under active development. We need
+to be able to be agile (lower case agile - not opening the door to the whole Agile discussion
+here), but we need &lt;em&gt;something&lt;/em&gt; to hold us accountible to the decisions made yesterday, but
+yet allow those decisions to be further refined or changed today.&lt;/p&gt;</content><author><name>Vaughan Schmidt</name></author><category term="Software," /><category term="Quality" /><summary type="html">Inspiration</summary></entry><entry><title type="html">Github code review tunnel-vision</title><link href="https://cvschmidt.com/github,/software,/quality/2021/10/21/github-review-tunnel-vision.html" rel="alternate" type="text/html" title="Github code review tunnel-vision" /><published>2021-10-21T16:00:00+00:00</published><updated>2021-10-21T16:00:00+00:00</updated><id>https://cvschmidt.com/github,/software,/quality/2021/10/21/github-review-tunnel-vision</id><content type="html" xml:base="https://cvschmidt.com/github,/software,/quality/2021/10/21/github-review-tunnel-vision.html">&lt;h1 id=&quot;the-problem-with-githubs-code-reviews&quot;&gt;The problem with github’s code reviews&lt;/h1&gt;
+
+&lt;p&gt;Today’s soapbox: Github’s code review tool creates tunnel vision&lt;/p&gt;
+
+&lt;p&gt;I see this happening a lot: a PR on github is reviewed only within the extent of the changes.
+That is to say, “Yep, the code you wrote LGTM” without considering the context of the larger
+code base.&lt;/p&gt;
+
+&lt;p&gt;Today’s example was the addition of new logic with a corresponding (new) boolean flag parameter
+to control basic logic within the function. All that’s fine and good - but once I opened the
+file up in an actual editor and started tracing calls upstream and downstream, we quickly identify
+the new boolean flag is superflous, and what’s more - we’ve got another parameter that now mirrors
+an existing object attribute - so why are we still passing it around?&lt;/p&gt;
+
+&lt;p&gt;Also, we can’t comment on lines outside the diff itself - so drawing attention to something else,
+or questioning an existing (but un-changed) block of code isn’t the easiest to do. We end up with
+comments like&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;Not your change, but L187-190 above should be changed to reflect new object attribute.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;But the bigger problem - and original gripe - is the tunnel-vision.  We’re rushing these patches 
+through review without spending time looking at them with a more holistic approach and when we
+finish our review with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;+1 LGTM&lt;/code&gt;, we really haven’t considered the code change in the bigger
+picture - are we duplicating functionality? Is this optimal fix, or are we just doing what is
+most convenient here because to do it correctly, we really need to refactor this module and nobody’s 
+got time for that? etc.&lt;/p&gt;
+
+&lt;p&gt;For me, I’m going to make a point to pull down more code reviews locally and spend the time it takes
+to check better upstream and downstream - especially when the entirety of the change isn’t within
+a single function.&lt;/p&gt;</content><author><name>Vaughan Schmidt</name></author><category term="Github," /><category term="Software," /><category term="Quality" /><summary type="html">The problem with github’s code reviews</summary></entry><entry><title type="html">Partitioning data with sentinel value using Pandas</title><link href="https://cvschmidt.com/python/pandas/analytics/2021/03/02/partition-on-sentinel-value.html" rel="alternate" type="text/html" title="Partitioning data with sentinel value using Pandas" /><published>2021-03-02T16:00:00+00:00</published><updated>2021-03-02T16:00:00+00:00</updated><id>https://cvschmidt.com/python/pandas/analytics/2021/03/02/partition-on-sentinel-value</id><content type="html" xml:base="https://cvschmidt.com/python/pandas/analytics/2021/03/02/partition-on-sentinel-value.html">&lt;h1 id=&quot;the-problem&quot;&gt;The problem&lt;/h1&gt;
+
+&lt;p&gt;I have a collection of sensor readings / telemetry that I want to partition into subsets based on the detection
+of a sentinel value. For this case, imagine a collection of power readings for a motor running a conveyor
+belt in a factory. When a batch is being produced, the conveyor belt runs continuously. The belt motor
+is powered off during process change-overs.&lt;/p&gt;
+
+&lt;p&gt;The motor drive is polled once per minute and instantaneous power draw is saved to database along with
+other metrics from elsewhere in the process.&lt;/p&gt;
+
+&lt;h1 id=&quot;the-solution&quot;&gt;The solution&lt;/h1&gt;
+
+&lt;p&gt;It is easier to show than explain… 
+The gist is located &lt;a href=&quot;https://gist.github.com/vschmidt94/91518e3c40e0f1284401297049439376&quot;&gt;here&lt;/a&gt;&lt;/p&gt;
+
+&lt;script src=&quot;https://gist.github.com/vschmidt94/91518e3c40e0f1284401297049439376.js&quot;&gt;&lt;/script&gt;</content><author><name>Vaughan Schmidt</name></author><category term="Python" /><category term="Pandas" /><category term="Analytics" /><summary type="html">The problem</summary></entry><entry><title type="html">Mentor Collective @ Oregon State Univ PostBacc CS</title><link href="https://cvschmidt.com/mentoring,/oregonstate/2021/02/14/Mentor-Collective.html" rel="alternate" type="text/html" title="Mentor Collective @ Oregon State Univ PostBacc CS" /><published>2021-02-14T17:00:00+00:00</published><updated>2021-02-14T17:00:00+00:00</updated><id>https://cvschmidt.com/mentoring,/oregonstate/2021/02/14/Mentor-Collective</id><content type="html" xml:base="https://cvschmidt.com/mentoring,/oregonstate/2021/02/14/Mentor-Collective.html">&lt;p&gt;When I decided to make a career change, I went back for a second Bachelors - this time in Computer Science through
+the &lt;a href=&quot;https://eecs.oregonstate.edu/academic/online-cs-postbacc&quot;&gt;Oregon State University PostBacc Computer Science&lt;/a&gt;
+program. At the time, I was in one of the early cohorts to graduate and since then, the program has grown 
+substantially. One of the additions in recent years has been a partnership with
+&lt;a href=&quot;https://www.mentorcollective.org/&quot;&gt;Mentor Collective&lt;/a&gt; to pair graduates with current students in a mentoring
+relationship.&lt;/p&gt;
+
+&lt;p&gt;For Winter ‘21 term, I’ve been paired with 3 student in the program - which brings my total pairings to around 10.
+But what prompted this post is the meeting I had with one of my mentees this past week. He is far along in the 
+program - and has completed 2 sucessful internships and already has accepted a job at one of the FAANG companies 
+pending his graduation. For convenience, and to avoid his real name, I will call him ‘Chris’.&lt;/p&gt;
+
+&lt;p&gt;To be honest, my impression on reading Chris’s introduction email and browsing his LinkedIn was “What in the world 
+can I possibly contribute here?”. He’s clearly on a very sucessful track.&lt;/p&gt;
+
+&lt;p&gt;As I’ve gotten to know Chris better, it is evident that he’s one of the students with a clear sense of ownership and
+initiative when it comes to his career. While most of the mentees I’ve had over the past 2 years are willing to talk
+with some prompting, and have occassionally reached out with certain requests - resume feedback, etc. - Chris almost 
+immediately scheduled a 15 minute Google Meet for us to talk. That 15 minutes turned into nearly an hour long 
+conversation.&lt;/p&gt;
+
+&lt;p&gt;Chris had clearly been thinking about his pending graduation and life as a ‘real’ software developer in the near 
+future and came prepared with a list of questions - which were all mainly centered on wanting to hear my experiences
+in industry. He fully understood that my own answers here might not reflect what he runs into in his upcoming role,
+but was very keen to hear my own take on topics like:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Comparing my experience at Garmin with what I’m doing now at Intel
+    &lt;ul&gt;
+      &lt;li&gt;What are differences in team organization and size?&lt;/li&gt;
+      &lt;li&gt;What do I feel were important differences in management’s organization?&lt;/li&gt;
+      &lt;li&gt;How did I feel about making a switch from embedded to more of a full-stack environment?&lt;/li&gt;
+      &lt;li&gt;Which company did I enjoy working at the most and why?&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;How did my family adjust to relocations?&lt;/li&gt;
+  &lt;li&gt;What did I think of benefit packages and differences?&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;he-took-ownership-of-the-mentoring-relationship&quot;&gt;He took ownership of the mentoring relationship&lt;/h1&gt;
+
+&lt;p&gt;This was my biggest take-away - Chris came in to the mentoring program knowing what he wanted out of it, and was 
+prepared to drive the relationship forward. So many students seem to sign up and expect to be spoon-fed by their
+mentor - but that’s not how these relationships are designed to work.  Sure, I can check in periodically and make
+sure that the student is proceeding OK scholastically, but that’s not the point of building a mentor relationship.&lt;/p&gt;
+
+&lt;p&gt;A mentor is a resource for the mentee. We’re another tool in your toolbelt, but it’s up to the mentee to decide
+when and where to apply the tool and for what benefit.&lt;/p&gt;</content><author><name>Vaughan Schmidt</name></author><category term="mentoring," /><category term="OregonState" /><summary type="html">When I decided to make a career change, I went back for a second Bachelors - this time in Computer Science through the Oregon State University PostBacc Computer Science program. At the time, I was in one of the early cohorts to graduate and since then, the program has grown substantially. One of the additions in recent years has been a partnership with Mentor Collective to pair graduates with current students in a mentoring relationship.</summary></entry><entry><title type="html">Intercepting python module __call__()</title><link href="https://cvschmidt.com/python/2021/02/10/intercepting-python-module-call.html" rel="alternate" type="text/html" title="Intercepting python module __call__()" /><published>2021-02-10T20:27:14+00:00</published><updated>2021-02-10T20:27:14+00:00</updated><id>https://cvschmidt.com/python/2021/02/10/intercepting-python-module-call</id><content type="html" xml:base="https://cvschmidt.com/python/2021/02/10/intercepting-python-module-call.html">&lt;p&gt;Python provides the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;__call__()&lt;/code&gt; magic method to allow an object instance to behave as a function in that you could
+now call the object directly.&lt;/p&gt;
+
+&lt;p&gt;I ran into the case where we needed to override a value previously initialized instance variable being used within 
+the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;__call__()&lt;/code&gt; in a 3rd party module - specifically the ProxyFix middleware in the Werkzeug library. I’ll keep this
+example more generic though - I wanted to set up the scenario though in that I really don’t want replace the original
+class’s &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;__call__()&lt;/code&gt; with my own, but I want to alter some of the instance variables that control the call’s behavior.&lt;/p&gt;
+
+&lt;p&gt;The solution is straight forward:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Override the class&lt;/li&gt;
+  &lt;li&gt;In child class, modify the instance variable&lt;/li&gt;
+  &lt;li&gt;call the rest of the logic in base class via &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;super.__call__()&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Here’s a simple gist with example:&lt;/p&gt;
+
+&lt;script src=&quot;https://gist.github.com/vschmidt94/a0863048ea5f3c9d9400298b3f826082.js&quot;&gt;&lt;/script&gt;
+
+&lt;p&gt;Note in that gist, the original instance value has been completely replaced, but would be easy enough to save off and restore.&lt;/p&gt;</content><author><name>Vaughan Schmidt</name></author><category term="python" /><summary type="html">Python provides the __call__() magic method to allow an object instance to behave as a function in that you could now call the object directly.</summary></entry><entry><title type="html">Code comments as knowledge transfer</title><link href="https://cvschmidt.com/software/2021/01/09/comments-as-knowledge-transfer.html" rel="alternate" type="text/html" title="Code comments as knowledge transfer" /><published>2021-01-09T20:00:00+00:00</published><updated>2021-01-09T20:00:00+00:00</updated><id>https://cvschmidt.com/software/2021/01/09/comments-as-knowledge-transfer</id><content type="html" xml:base="https://cvschmidt.com/software/2021/01/09/comments-as-knowledge-transfer.html">&lt;h2 id=&quot;uncle-bob-vs-me&quot;&gt;Uncle Bob vs. Me&lt;/h2&gt;
+
+&lt;p&gt;In another post: [Clean Code by R. Martin]/computerscience/books/2020/12/27/book-notes-martin-clean-code.html, I am keeping 
+some running notes as I re-read the Uncle Bob’s well known book.&lt;/p&gt;
+
+&lt;p&gt;Chapter 4: &lt;em&gt;Comments&lt;/em&gt; made me start questioning myself, and my own use of comments. Along the lines of “Hello,
+my name is Vaughan, and I am a code commenter.” &lt;em&gt;Do I really have a problem and am I hiding it from myself?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Possibly, but on closer inspection perhaps it is not as bad as it appears.&lt;/p&gt;
+
+&lt;h2 id=&quot;where-clean-code-gets-it-right&quot;&gt;Where Clean Code gets it right&lt;/h2&gt;
+
+&lt;p&gt;In principle I agree with everything Robert Martin has put into the &lt;em&gt;Comments&lt;/em&gt; chapter:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;“Don’t comment bad code - rewrite it” - Kernigham &amp;amp; Plaugher&lt;/li&gt;
+  &lt;li&gt;“The proper use of comments is to compensate for our failure to express ourself in code.” - Robert Martin&lt;/li&gt;
+  &lt;li&gt;Comments lie&lt;/li&gt;
+  &lt;li&gt;Become maintainabilty issue - code evolves, comments don’t&lt;/li&gt;
+  &lt;li&gt;Code is the source of truth&lt;/li&gt;
+  &lt;li&gt;Spend effort to minimize comments&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I don’t disagree with any of this, and when I find myself writing a comment, I always try to take a second
+pass to eliminate the need for the comment. Often a little refactoring goes a long way to remove the need
+for a comment.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-missing-case-for-comments-knowledge-capture--transfer&quot;&gt;The missing case for comments: Knowledge Capture &amp;amp; Transfer&lt;/h2&gt;
+
+&lt;p&gt;I am biased by the code bases I’ve worked on professionally. They’ve been mature (read: long-lived) code
+bases that are still constantly evolving as technologies and business needs evolve.&lt;/p&gt;
+
+&lt;p&gt;What I’ve found in practice is that comments are invaluable for &lt;em&gt;knowledge transfer&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;As software developers, we find ourselves translating business needs and customer requirements to code.
+Sometimes it is very straightforward, but many times it is not. We have to develop an understanding of
+the underlying business reasons and user expectations in the business domain, which we are likely not
+experts in ourselves. We do this by talking to the customers &amp;amp; users, other managers, doing our own
+research, etc.&lt;/p&gt;
+
+&lt;p&gt;At the end of this process, we are mentally holding a bunch a details that use to inform the writing of
+the code. Usually in a matter of days, weeks, and possibly months - we’ve become the subject matter 
+expert on the dev team for the module we are working on.&lt;/p&gt;
+
+&lt;p&gt;Then one day the module is magically finished, merged into mainline, and we pick up a new ticket to
+start working, and move on with new issues.  Before long, some other developer has to go work in that 
+module we knew so much about, and learned the intricate details. Good comments can help this other
+developer (or even future us who has forgotten some of the details) understand the reasoning and 
+implementation choices that were made at the time.&lt;/p&gt;
+
+&lt;h3 id=&quot;example-realistic-depiction-of-runway-thresholds-on-graphical-flight-displays&quot;&gt;Example: Realistic depiction of runway thresholds on graphical flight displays&lt;/h3&gt;
+
+&lt;p&gt;This is one of the issues I worked at Garmin. At the time, Garmin’s flight displays had a generic
+visualization of 8 runway threshold stripes that was used on all runways. It helped make the 
+runway displayed on the moving map “look” like a runway.&lt;/p&gt;
+
+&lt;p&gt;In the quest for continual product improvement, somebody realized that in fact, “real world” 
+runway markings were much more complicated - and different markings conveyed different 
+information to the pilot about to land on the runway.&lt;/p&gt;
+
+&lt;p&gt;In the process of implementing the feature improvement - which started out as the simple request
+“Runway threshold stripes should correctly match the use of stripes on the actual runway”, I ended
+up learning quite a bit about runway markings. I learned a lot of details from the 
+&lt;a href=&quot;https://www.faa.gov/airports/resources/advisory_circulars/index.cfm/go/document.current/documentNumber/150_5300-13&quot;&gt;FAA’s AC150/5300 Airport Design Standards&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;The first implementation of the new logic was merged with much rejoicing… until a few weeks later
+feedback started coming in from the test pilots along of the lines of “the new runway lines seem to dance
+and flash as we land, it is distracting”. That was indeed a problem - so back to the drawing board.&lt;/p&gt;
+
+&lt;p&gt;To spare the details, we had to make changes and compromises within the actual FAA standards and 
+what we could do to get a clear, non-distracting visualization on the display. The FAA standards are
+applied to runways 50 to 200+ feet wide, and the display has to work with a finite number of pixels.&lt;/p&gt;
+
+&lt;p&gt;At the end of the day, the module was commented with all sorts of information for the next person that
+had to deal with it:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Links to the appropriate FAA standards online
+    &lt;ul&gt;
+      &lt;li&gt;Yes, these could change over time, but at least they provide a starting point for the next developer that needs to get up to speed.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Explanations of design choices. Examples:
+    &lt;ul&gt;
+      &lt;li&gt;Why I only generated a dynamic texture for half the runway width (because we can mirror-image it)&lt;/li&gt;
+      &lt;li&gt;A brief history of why the ‘obviously simpler’ approach failed.
+        &lt;ul&gt;
+          &lt;li&gt;As we don’t want history to repeat itself a couple of years later when somebody say “Oh, this can be done quicker and simpler if we do a, b, and c”  Been there, tried that, results were not acceptable.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;Why we fall back to using a lower-resolution static image at certain zoom ranges&lt;/li&gt;
+      &lt;li&gt;How projects consuming the library can use tunables to configure the behaviour for the parameters of their particular display.&lt;/li&gt;
+      &lt;li&gt;How the stripe image asset was developed and importance of design choices that support a texture that has sufficient anti-aliasing not to flicker&lt;/li&gt;
+      &lt;li&gt;Math employed to properly center the texture on our world cordinate system&lt;/li&gt;
+      &lt;li&gt;and so on.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;All this provides a lattice of information that some other developer new to the module
+could easily leverage to minimize time and effort to get up to speed with the implementation provided by
+the module. Lack of sufficient documentation would be called out by teammates during review - they knew
+it could be them working in that module next.&lt;/p&gt;
+
+&lt;h3 id=&quot;closing-dont-consider-comments-as-second-class-citizens&quot;&gt;Closing: Don’t consider comments as second-class citizens&lt;/h3&gt;
+
+&lt;p&gt;Robert Martin’s advice on code comments is good and true, but runs the risk of deprecating the added value
+useful, informative, and well-considered comments can bring to software. Comments should carry the same weight
+as the code itself - they are not second-class citizens you should feel free to skim over as you maintain your
+code.  Yes, they are a maintenance burden - so use discretion and think carefully about their use.&lt;/p&gt;
+
+&lt;p&gt;One of the first things Robert Martin mentions in &lt;em&gt;Clean Code&lt;/em&gt; is the Boy Scout motto of “Leave the campground
+better than you found it”. In this context, think of good comments as that voice of experience you can 
+leave for new campers to more quickly orient themselves on arriving at the campsite.&lt;/p&gt;</content><author><name>Vaughan Schmidt</name></author><category term="software" /><summary type="html">Uncle Bob vs. Me</summary></entry><entry><title type="html">Book Notes: Clean Code by R. Martin</title><link href="https://cvschmidt.com/computerscience/books/2020/12/27/book-notes-martin-clean-code.html" rel="alternate" type="text/html" title="Book Notes: Clean Code by R. Martin" /><published>2020-12-27T16:00:00+00:00</published><updated>2020-12-27T16:00:00+00:00</updated><id>https://cvschmidt.com/computerscience/books/2020/12/27/book-notes-martin-clean-code</id><content type="html" xml:base="https://cvschmidt.com/computerscience/books/2020/12/27/book-notes-martin-clean-code.html">&lt;p&gt;I want to take another pass through Uncle Bob’s (a.k.a. Robert Martin) book, &lt;em&gt;Clean Code&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;A lot of my work lately has been trending towards overhaul &amp;amp; refactoring legacy modules that have been modified, patched, and
+Frakenstein’d for years. This typically starts with a new feature request, which seems simple enough on the surface -
+but once I get into the modules in question, some of the accrued technical debt means it’s not as simple as it could be.&lt;/p&gt;
+
+&lt;p&gt;I want to avoid giving the wrong impression though: I think our particular code base is in fairly average condition
+given its age, size, complexity, and number of contributors. It’s just time to bring some of the &lt;em&gt;Boy Scout Rule&lt;/em&gt;
+he mentions right in Chapter 1: &lt;strong&gt;Leave the campground better than you found it.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;book-notes--book-review&quot;&gt;Book Notes != Book Review&lt;/h2&gt;
+
+&lt;p&gt;To be clear, the purpose of this post is a place to collect my own notes as I read through the book. Uncle Bob is going
+to explain some things that reasonate with me strongly, and probably there will be things I disagree with as well.&lt;/p&gt;
+
+&lt;p&gt;My goal is 1 chapter a every day or two, and I’ll just continually update this post until I’m finished. What I hope to
+produce in the end is a Cliff Notes-ish post that will be useful for me to circle back to in the future.&lt;/p&gt;
+
+&lt;h2 id=&quot;chapters&quot;&gt;Chapters&lt;/h2&gt;
+&lt;h3 id=&quot;1-clean-code&quot;&gt;1. Clean Code&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;LeBlanc’s law: &lt;em&gt;Later equals never&lt;/em&gt;
+    &lt;ul&gt;
+      &lt;li&gt;I need to remember this one for Kanban review and planning meetings when we kick the can.&lt;/li&gt;
+      &lt;li&gt;Corollary (or something): &lt;em&gt;Perfect is the enemy of done&lt;/em&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Various takes on the idea of Clean Code by big names in CS&lt;/li&gt;
+  &lt;li&gt;&lt;em&gt;Making code easier to read actually makes it easier to write&lt;/em&gt;&lt;/li&gt;
+  &lt;li&gt;Boy Scout rule: &lt;em&gt;Leave the campground better than you found it.&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;2-meaningful-names&quot;&gt;2. Meaningful Names&lt;/h3&gt;
+
+&lt;p&gt;No suprises here, agree with everything, a couple of highlighted notes:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Clarity is king&lt;/li&gt;
+  &lt;li&gt;Don’t be afraid to rename if you come up with something better&lt;/li&gt;
+  &lt;li&gt;Don’t add gratuitous context&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This is something every team I’ve been on has been about the same stage of acceptance: The benefit of longer / more
+descriptive names for everything across the board outweighs the cost of the longer name. Still, if you can be concise
+and short - that’s even better. Just don’t be short named and vague.&lt;/p&gt;
+
+&lt;h3 id=&quot;3-functions&quot;&gt;3. Functions&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Keep them small!&lt;/li&gt;
+  &lt;li&gt;Functions should do one thing, do it well, and do it only
+    &lt;ul&gt;
+      &lt;li&gt;“If a function does only those steps that are one level below the stated name of the function, then the function is
+doing one thing”&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Code should read like a top-down narrative&lt;/li&gt;
+  &lt;li&gt;By their nature, switch statements do N things&lt;/li&gt;
+  &lt;li&gt;Use descriptive names for functions
+    &lt;ul&gt;
+      &lt;li&gt;“A long descriptive name is better than a long descriptive comment”&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Ideal number of arguments is 0, followed by 1, then 2.
+    &lt;ul&gt;
+      &lt;li&gt;Boy, do I have a lot to work on here.&lt;/li&gt;
+      &lt;li&gt;more arguments = more testing / harder testing&lt;/li&gt;
+      &lt;li&gt;A boolean argument is really, really bad
+        &lt;ul&gt;
+          &lt;li&gt;Means the function does 2 things&lt;/li&gt;
+          &lt;li&gt;IMO, maybe not that bad… essentially lets you choose a strategy - but I get his point.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Functions should not have side effects
+    &lt;ul&gt;
+      &lt;li&gt;“Side effects are lies”&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Function should do something or answer something - not both&lt;/li&gt;
+  &lt;li&gt;Exceptions &amp;gt; Returning error codes
+    &lt;ul&gt;
+      &lt;li&gt;Lets you separate error handling from happy path&lt;/li&gt;
+      &lt;li&gt;Error handling qualifies as “one thing” - so have error handling functions&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;DRY&lt;/li&gt;
+  &lt;li&gt;Structured Programming - the old single entry / single exit:
+    &lt;ul&gt;
+      &lt;li&gt;If functions are small, so what if you return early&lt;/li&gt;
+      &lt;li&gt;Personally, I like early bail outs when justified, it cuts the mental clutter of what the possible cases are by
+tying off loose ends early.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;It is not natural to write code like this:
+    &lt;ul&gt;
+      &lt;li&gt;Start with getting the logic down, then:
+        &lt;ul&gt;
+          &lt;li&gt;refactor! refactor! - try different things&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;comments&quot;&gt;Comments&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;“Don’t comment bad code - rewrite it” - Kernigham &amp;amp; Plaugher&lt;/li&gt;
+  &lt;li&gt;“The proper use of comments is to compensate for our failure to express ourself in code.” - Uncle Bob&lt;/li&gt;
+  &lt;li&gt;Comments lie&lt;/li&gt;
+  &lt;li&gt;Become maintainabilty issue - code evolves, comments don’t&lt;/li&gt;
+  &lt;li&gt;Code is the source of truth&lt;/li&gt;
+  &lt;li&gt;Spend effort to minimize comments&lt;/li&gt;
+  &lt;li&gt;Acceptable as Explanation of intent, warning of consequences&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The chapter goes into a lot more details and specific examples that are worthwhile to review, but the above
+bullets capture the essence.&lt;/p&gt;
+
+&lt;h3 id=&quot;formatting&quot;&gt;Formatting&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Formatting is important&lt;/li&gt;
+  &lt;li&gt;… is about communcation&lt;/li&gt;
+  &lt;li&gt;Vertical density implies close associations&lt;/li&gt;
+  &lt;li&gt;Declare variables as close to their useage as possible&lt;/li&gt;
+  &lt;li&gt;Instance variables should be declared at top of class&lt;/li&gt;
+  &lt;li&gt;Dependent functions should be vertically close&lt;/li&gt;
+  &lt;li&gt;Functions with high conceptual affinity should be close&lt;/li&gt;
+  &lt;li&gt;Vertical ordering -&amp;gt; call dependencies should point downward&lt;/li&gt;
+  &lt;li&gt;Horizontal formatting - 80 chars is arbitrily short, but don’t go too long either&lt;/li&gt;
+  &lt;li&gt;Indentation helps visualize structure, and also too deeply nested code&lt;/li&gt;
+  &lt;li&gt;Follow team rules, use static analysis&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;objects-and-data-structures&quot;&gt;Objects and Data Structures&lt;/h3&gt;</content><author><name>Vaughan Schmidt</name></author><category term="ComputerScience" /><category term="Books" /><summary type="html">I want to take another pass through Uncle Bob’s (a.k.a. Robert Martin) book, Clean Code.</summary></entry><entry><title type="html">Fixing a broken state machine</title><link href="https://cvschmidt.com/software/statemachine/2020/12/24/what-broke-the-state-machine.html" rel="alternate" type="text/html" title="Fixing a broken state machine" /><published>2020-12-24T22:27:14+00:00</published><updated>2020-12-24T22:27:14+00:00</updated><id>https://cvschmidt.com/software/statemachine/2020/12/24/what-broke-the-state-machine</id><content type="html" xml:base="https://cvschmidt.com/software/statemachine/2020/12/24/what-broke-the-state-machine.html">&lt;h2 id=&quot;what-is-a-state-machine&quot;&gt;What is a state machine?&lt;/h2&gt;
+
+&lt;p&gt;From some software engineering class somewhere, everyone’s run into the 
+&lt;a href=&quot;https://en.wikipedia.org/wiki/Finite-state_machine&quot;&gt;finite state machine&lt;/a&gt; model. In a state machine,
+behavior is controlled by transitioning through a series of states. Upon some logic condition,
+the model moves through defined transitions between states.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/cvschmidt_blog/assets/img/state_machine/state_machine.png&quot; alt=&quot;simple state machine&quot; width=&quot;200&quot; height=&quot;auto&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The software model of a state machine provides a very flexible framework for automation. For example, the movement of
+objects between phases in their lifecycle.&lt;/p&gt;
+
+&lt;h2 id=&quot;what-happens-if-you-break-the-rules&quot;&gt;What happens if you break the rules?&lt;/h2&gt;
+
+&lt;p&gt;The fundamental rules of a state machine are:&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;There are finite set of states.&lt;/li&gt;
+  &lt;li&gt;There are defined transitions between states.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;A recent project I was working on decided to bend (err, break) these rules a little by introducing a new state that
+could be entered via user influence. In other words, upon certain interactions with UI, the object would immediately
+&lt;em&gt;teleport&lt;/em&gt; into this new state. The intent was good, in that the desire was to implement “Hey, the user has mucked with
+the object and we don’t really know how the object should now be handled. Let’s put in this new ‘updated’ state and then
+when the state machine logic kicks in, it can decide the outcome based on the whatever object mutation now exists.”&lt;/p&gt;
+
+&lt;p&gt;So, we essentially had this:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/cvschmidt_blog/assets/img/state_machine/broken_state_machine.png&quot; alt=&quot;broken state machine&quot; width=&quot;400&quot; height=&quot;auto&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Yep, it’s pretty obvious once you diagram it out - especially when you consider two different processes potentially
+could update the object’s state. Given the state machine processing looped through several hundred individual objects
+each loop, and user updates in the GUI were relatively rare events - &lt;em&gt;most&lt;/em&gt; of the time, everything just worked.&lt;/p&gt;
+
+&lt;p&gt;But we definitely had sporadic instances where the user’s update to the object did not appear to be correctly handled.
+This was ultimately due to the race condition found in the original code: The handler process was in the middle of a
+transition at the same time a user update landed. If the user update landed first, it was over-written by the handler
+process - and vice-versa.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-fix&quot;&gt;The fix&lt;/h2&gt;
+
+&lt;p&gt;In this case, the ideal fix would have been to change the ‘updated’ state from a state to something like a flag, and
+have the state handler process be aware of the update flag, and include the flag condition in the processing.&lt;/p&gt;
+
+&lt;p&gt;In my particular case, the object record in the database could not be altered (because… reasons). What I did end up
+doing was (1) remove the updated state (the ‘U’ state), and (2) move the logic for deciding the appropriate original
+state the object update should produce to the API process.  Finally, I introduced a lock on the object when it was being
+handled by the User API process.&lt;/p&gt;</content><author><name>Vaughan Schmidt</name></author><category term="software" /><category term="statemachine" /><summary type="html">What is a state machine?</summary></entry><entry><title type="html">Hello, Jekyll + GitHub Pages!</title><link href="https://cvschmidt.com/jekyll/update/2020/12/24/welcome-to-jekyll.html" rel="alternate" type="text/html" title="Hello, Jekyll + GitHub Pages!" /><published>2020-12-24T20:27:14+00:00</published><updated>2020-12-24T20:27:14+00:00</updated><id>https://cvschmidt.com/jekyll/update/2020/12/24/welcome-to-jekyll</id><content type="html" xml:base="https://cvschmidt.com/jekyll/update/2020/12/24/welcome-to-jekyll.html">&lt;p&gt;This is my first post on the new Jekyll blog. I hope to get this building on Github pages soon.&lt;/p&gt;</content><author><name>Vaughan Schmidt</name></author><category term="jekyll" /><category term="update" /><summary type="html">This is my first post on the new Jekyll blog. I hope to get this building on Github pages soon.</summary></entry><entry><title type="html">My OSU E-campus interview</title><link href="https://cvschmidt.com/oregonstate/computerscience/2020/10/14/osu_article.html" rel="alternate" type="text/html" title="My OSU E-campus interview" /><published>2020-10-14T20:00:00+00:00</published><updated>2020-10-14T20:00:00+00:00</updated><id>https://cvschmidt.com/oregonstate/computerscience/2020/10/14/osu_article</id><content type="html" xml:base="https://cvschmidt.com/oregonstate/computerscience/2020/10/14/osu_article.html">&lt;h2 id=&quot;check-it-out&quot;&gt;Check it out!&lt;/h2&gt;
+
+&lt;p&gt;Over the summer I recieved an email from Jordan Freeman asking if I would agree to be interviewed for the Oregon State
+e-campus online news site. A few weeks later, we were able to connect on a phone call, and I felt like I just talked a
+lot - but I think I was able to answer most of his questions.&lt;/p&gt;
+
+&lt;p&gt;And now, the end result has been published: &lt;a href=&quot;https://ecampus.oregonstate.edu/news/2020/building-relationships-with-classmates-was-key-to-success-for-osu-ecampus-alumnus/&quot;&gt;Building relationships with classmates was key to success for OSU Ecampus
+Alumnus&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;If you’re considering the Oregon State Post-Bacc Computer Science program, I do recommend it. It’s not without it’s
+flaws, but I speak from personal experience when I say it can really be life-changing! Feel free reach out to me
+directly if needed - I’ll be happy to share my experience.&lt;/p&gt;</content><author><name>Vaughan Schmidt</name></author><category term="OregonState" /><category term="ComputerScience" /><summary type="html">Check it out!</summary></entry></feed>

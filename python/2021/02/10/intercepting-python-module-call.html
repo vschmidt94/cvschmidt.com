@@ -1,0 +1,20 @@
+<p>Python provides the <code class="language-plaintext highlighter-rouge">__call__()</code> magic method to allow an object instance to behave as a function in that you could
+now call the object directly.</p>
+
+<p>I ran into the case where we needed to override a value previously initialized instance variable being used within 
+the <code class="language-plaintext highlighter-rouge">__call__()</code> in a 3rd party module - specifically the ProxyFix middleware in the Werkzeug library. I’ll keep this
+example more generic though - I wanted to set up the scenario though in that I really don’t want replace the original
+class’s <code class="language-plaintext highlighter-rouge">__call__()</code> with my own, but I want to alter some of the instance variables that control the call’s behavior.</p>
+
+<p>The solution is straight forward:</p>
+<ul>
+  <li>Override the class</li>
+  <li>In child class, modify the instance variable</li>
+  <li>call the rest of the logic in base class via <code class="language-plaintext highlighter-rouge">super.__call__()</code></li>
+</ul>
+
+<p>Here’s a simple gist with example:</p>
+
+<script src="https://gist.github.com/vschmidt94/a0863048ea5f3c9d9400298b3f826082.js"></script>
+
+<p>Note in that gist, the original instance value has been completely replaced, but would be easy enough to save off and restore.</p>
