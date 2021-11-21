@@ -12,7 +12,7 @@ Sacramento, CA
 email: [vaughan.schmidt@gmail.com](mailto:vaughan.schmidt@gmail.com)  
 phone: 916.633.4511  
 github: [https://github.com/vschmidt94](https://github.com/vschmidt94)  
-linkedin: [https://linkedin.com/vaughanschmidt](https://linkedin.com/vaughanschmidt)  
+linkedin: [https://linkedin.com/in/vaughanschmidt](https://linkedin.com/in/vaughanschmidt)  
 
 <span><i class="fas fa-file-pdf-o"></i>&nbsp;<a href="/assets/pdf/vaughan_schmidt_resume.pdf" target="_blank">PDF C.V.</a></span>
 
