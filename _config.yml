@@ -21,7 +21,7 @@
 title: code.mechanics
 email: vaughan.schmidt@gmail.com
 author: Vaughan Schmidt
-copyright: Copyright © 2021
+copyright: Copyright © 2023
 description: >- # this means to ignore newlines until "baseurl:"
     Welcome to my personal blog... these are probably not the droids you are looking for,
     but welcome! This is a space I use to organize my thoughts, track projects and ideas,
@@ -48,6 +48,8 @@ plugins:
 header_pages:
     - cv.markdown
     - about.markdown
+
+night_mode: "on"
 
 # Exclude from processing.
 # The following items will not be processed, by default.
